@@ -7,12 +7,14 @@ import {AppComponent} from './app.component';
 import {GalleryComponent} from './gallery/gallery.component';
 import {ImageService} from "./services/image.service";
 import {ImageComponent} from './image/image.component';
+import {PopupImageComponent} from './popup-image/popup-image.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GalleryComponent,
-    ImageComponent
+    ImageComponent,
+    PopupImageComponent
   ],
   imports: [
     BrowserModule,
