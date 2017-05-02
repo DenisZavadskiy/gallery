@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewChecked, Component, OnInit, ViewChild} from '@angular/core';
 import {ImageModel} from "../models/image.model";
 declare let Packery: any;
 
@@ -8,9 +8,11 @@ declare let Packery: any;
   styleUrls: ['./gallery.component.css'],
   inputs: ['images']
 })
-export class GalleryComponent implements OnInit, AfterViewInit {
+export class GalleryComponent implements AfterViewChecked{
   @ViewChild('packerygrid') grid;
   images: ImageModel[];
+  packery: any;
+
 
   constructor() {
   }
@@ -19,11 +21,24 @@ export class GalleryComponent implements OnInit, AfterViewInit {
     console.log(image);
   }
 
-  ngOnInit() {
+  public onChange(event) {
+    let reader = new FileReader();
+
+    reader.readAsDataURL(event.srcElement.files[0]);
+
+    reader.onload = (ev: any) => {
+      let image = new Image();
+      image.src = ev.target.result;
+
+      image.onload = (ev: any) => {
+        let galleryImage: ImageModel = new ImageModel(image.src);
+        this.images.push(galleryImage);
+      };
+    }
   }
 
-  ngAfterViewInit() {
-    let packery = new Packery(this.grid.nativeElement, {
+  ngAfterViewChecked() {
+    this.packery = new Packery(this.grid.nativeElement, {
       itemSelector: '.packery-grid-item',
       gutter: 10,
       horizontal: true

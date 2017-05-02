@@ -6,6 +6,12 @@
       <div class="packery-grid-item" *ngFor="let image of images" ngClass="{{image.getType()}}">
         <img [src]="image.getSource()" (click)="imageClick(image)">
       </div>
+      <div class="packery-grid-item" id="addImageBtn">
+        <input type="file" id="addFileInput" multiple="" accept="image/jpeg,image/png" (change)="onChange($event)">
+
+        <div class="btn-add"></div>
+        <p class="btn-add-description">Add your<br>Picture</p>
+      </div>
     </section>
   </section>
 </section>
