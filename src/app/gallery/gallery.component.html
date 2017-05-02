@@ -1,8 +1,11 @@
 <section id="gallery-wrapper">
+  <h1 class="page-title">Welcome to viseven <span class="page-title--color">imagestock</span></h1>
 
-  <!--<masonry>-->
-    <!--<masonry-brick class="brick gallery-item" *ngFor="let image of images" ngClass="{{image.getType()}}">-->
-      <!--<img [src]="image.getSource()" (click)="imageClick(image)">-->
-    <!--</masonry-brick>-->
-  <!--</masonry>-->
+  <section class="packery-grid-wrapper">
+    <section class="packery-grid" #packerygrid>
+      <div class="packery-grid-item" *ngFor="let image of images" ngClass="{{image.getType()}}">
+        <img [src]="image.getSource()" (click)="imageClick(image)">
+      </div>
+    </section>
+  </section>
 </section>

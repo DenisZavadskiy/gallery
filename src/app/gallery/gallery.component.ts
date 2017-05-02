@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {ImageModel} from "../models/image.model";
+declare let Packery: any;
 
 @Component({
   selector: 'app-gallery',
@@ -7,7 +8,8 @@ import {ImageModel} from "../models/image.model";
   styleUrls: ['./gallery.component.css'],
   inputs: ['images']
 })
-export class GalleryComponent implements OnInit {
+export class GalleryComponent implements OnInit, AfterViewInit {
+  @ViewChild('packerygrid') grid;
   images: ImageModel[];
 
   constructor() {
@@ -20,4 +22,11 @@ export class GalleryComponent implements OnInit {
   ngOnInit() {
   }
 
+  ngAfterViewInit() {
+    let packery = new Packery(this.grid.nativeElement, {
+      itemSelector: '.packery-grid-item',
+      gutter: 10,
+      horizontal: true
+    });
+  }
 }

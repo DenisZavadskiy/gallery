@@ -57,20 +57,10 @@ export class ImageModel {
   private setType() {
     let ratio = this.image.width / this.image.height;
 
-    console.log(ratio);
-
-    if(ratio < 0.75){
+    if (ratio < 0.75) {
       this.type = "portrait-item";
     } else {
-      switch (Math.round(ratio)) {
-        case 1:
-          this.type = "square-item";
-          break;
-        default:
-          this.type = "wide-screen-item";
-          break;
-      }
+      this.type = Math.round(ratio) === 1 ? "square-item" : "wide-screen-item";
     }
-    console.log(this.type);
   }
 }

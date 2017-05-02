@@ -1,44 +1,63 @@
-:host #gallery-wrapper {
-  width: 1024px;
-  height: 768px;
+#gallery-wrapper {
+  width: 100%;
+  height: 100%;
   background: #F0F3F6;
-  overflow-y: hidden;
-  overflow-x: auto;
+  border: 1px solid transparent;
+  box-sizing: border-box;
 }
 
-:host masonry {
-  box-sizing: border-box;
+.page-title {
+  margin: 22px 0 0 25px;
+  font-family: "Open Sans", "Arial", sans-serif;
+  font-size: 24px;
+  line-height: 24px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #8499A7;
+}
+
+.page-title--color {
+  color: #21B8C6;
+}
+
+.packery-grid-wrapper {
+  width: 989px;
+  height: 630px;
+  margin: 10px 0 0 20px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 47px;
+}
+
+.packery-grid-wrapper::-webkit-scrollbar {
+  height: 10px;
+  border-radius: 5px;
+  background-color: #D1DAE3;
+}
+
+.packery-grid-wrapper::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: #21B8C6;
+}
+
+.packery-grid {
+  height: inherit;
   padding: 5px 0 5px 5px;
 }
 
-:host .brick {
-  position: relative;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
-  align-items: center;
-  margin-right: 10px;
-  margin-bottom: 10px;
+.packery-grid-item {
+  overflow: hidden;
   border-radius: 2px;
   box-shadow: 0 2px 10px 0 #C2CDD8;
-  overflow: hidden;
   cursor: pointer;
 }
 
-:host .wide-screen-item {
+.wide-screen-item {
   width: 482px;
   height: 200px;
 }
 
-:host .wide-screen-item img {
+.wide-screen-item img {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -47,17 +66,22 @@
   height: auto;
 }
 
-:host .square-item {
+.square-item {
   width: 236px;
   height: 200px;
 }
 
-:host .portrait-item {
+.square-item img {
+  width: auto;
+  height: inherit;
+}
+
+.portrait-item {
   width: 236px;
   height: 410px;
 }
 
-:host .portrait-item img {
+.portrait-item img {
   height: inherit;
   width: auto;
 }

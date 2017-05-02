@@ -8,7 +8,7 @@ import {GalleryComponent} from './gallery/gallery.component';
 import {ExpandedImageComponent} from './expanded-image/expanded-image.component';
 import {ImageService} from "./services/image.service";
 import {ImageComponent} from './image/image.component';
-import {MasonryModule} from 'angular2-masonry';
+// import {MasonryModule} from 'angular2-masonry';
 
 @NgModule({
   declarations: [
@@ -20,8 +20,7 @@ import {MasonryModule} from 'angular2-masonry';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
-    MasonryModule
+    HttpModule
   ],
   providers: [
     ImageService
