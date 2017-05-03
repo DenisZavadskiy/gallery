@@ -2,11 +2,15 @@ import {Injectable} from '@angular/core';
 import {ImageModel} from "../models/image.model";
 import {Http} from "@angular/http";
 import 'rxjs/add/operator/map';
+import {Subject} from "rxjs/Subject";
+import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class ImageService {
+  private currentImage: Subject<ImageModel>;
 
   constructor(private http: Http) {
+    this.currentImage = new Subject();
   }
 
   public loadAllImages() {
@@ -21,5 +25,13 @@ export class ImageService {
           );
         });
       });
+  }
+
+  public setCurrentImage(image: ImageModel){
+    this.currentImage.next(image);
+  }
+
+  public getCurrentImage() {
+    return this.currentImage;
   }
 }

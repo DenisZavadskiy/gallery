@@ -1,39 +1,47 @@
-<section id="popupOverlay">
+<section id="popupOverlay" *ngIf="popupOpened">
   <section id="imagePopup">
-    <div class="popup-close-btn"></div>
+    <div class="popup-close-btn" (click)="closePopup()"></div>
 
     <div id="imageBox">
       <div id="imageContainer">
-        <img src="" alt="">
+        <img [src]="image.getSource()" alt="">
       </div>
       <div id="evaluateContainer">
         <div class="evaluate-btn-wrapper first">
           <div class="evaluate-btn dislike-btn">
-            <p class="reviews-count">0</p>
+            <p class="reviews-count">{{image.getLikesCount()}}</p>
           </div>
         </div>
         <div class="evaluate-btn-wrapper">
           <div class="evaluate-btn like-btn">
-            <p class="reviews-count">0</p>
+            <p class="reviews-count">{{image.getDislikesCount()}}</p>
           </div>
         </div>
       </div>
     </div>
 
     <div id="commentsBox">
-      <h1 class="comments-box-title">Comments: 0</h1>
+      <h1 class="comments-box-title">Comments: {{image.getCommentsCount()}}</h1>
       <div class="comments-list">
-        <div class="comment">
+        <div class="comment" *ngFor="let comment of image.getImageComments()">
           <div class="comment-info-row">
-            <p class="comment-info-content">By Admin</p>
-            <p class="comment-info-content">2 month ago 8:00 AM</p>
+            <p class="comment-info-content">By {{comment.getAuthor()}}</p>
+            <p class="comment-info-content">{{comment.getDate() | fromNow}}</p>
           </div>
-          <div class="comment-content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquam</div>
+          <div class="comment-content">{{comment.getContent()}}</div>
         </div>
       </div>
-      <form>
-        <input type="text" required>
-        <textarea name="" id="" cols="30" rows="10"></textarea>
+
+      <form id="addCommentForm" [formGroup]="commentForm" (submit)="addComment(commentForm.value)">
+        <input type="text" class="add-nickname" placeholder="Type your nickname here..."
+               [formControl]="commentForm.controls['nickname']">
+
+        <div class="add-comment-content-wrapper">
+          <textarea name="" id="" cols="30" rows="10" class="add-comment-content"
+                    placeholder="Write your comment here..."
+                    [formControl]="commentForm.controls['commentContent']"></textarea>
+          <button type="submit" class="add-comment-btn" [disabled]="!commentForm.valid"></button>
+        </div>
       </form>
     </div>
   </section>

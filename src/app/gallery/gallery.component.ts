@@ -1,5 +1,6 @@
 import {AfterViewChecked, Component, OnInit, ViewChild} from '@angular/core';
 import {ImageModel} from "../models/image.model";
+import {ImageService} from "../services/image.service";
 declare let Packery: any;
 
 @Component({
@@ -14,11 +15,11 @@ export class GalleryComponent implements AfterViewChecked{
   packery: any;
 
 
-  constructor() {
+  constructor(public imageService: ImageService) {
   }
 
   imageClick(image) {
-    console.log(image);
+    this.imageService.setCurrentImage(image);
   }
 
   public onChange(event) {

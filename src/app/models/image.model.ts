@@ -54,6 +54,10 @@ export class ImageModel {
     return this.type;
   }
 
+  public getImageComments() {
+    return this.comments;
+  }
+
   private setType() {
     let ratio = this.image.width / this.image.height;
 
