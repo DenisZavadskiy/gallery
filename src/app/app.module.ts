@@ -6,7 +6,6 @@ import {HttpModule} from '@angular/http';
 import {AppComponent} from './app.component';
 import {GalleryComponent} from './gallery/gallery.component';
 import {ImageService} from "./services/image.service";
-import {ImageComponent} from './image/image.component';
 import {PopupImageComponent} from './popup-image/popup-image.component';
 import {FromNowPipe} from './pipes/from-now.pipe';
 
@@ -14,7 +13,6 @@ import {FromNowPipe} from './pipes/from-now.pipe';
   declarations: [
     AppComponent,
     GalleryComponent,
-    ImageComponent,
     PopupImageComponent,
     FromNowPipe
   ],
