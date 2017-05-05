@@ -10,16 +10,18 @@ export class ImageModel {
   constructor(source: string, likesCount?: number, dislikesCount?: number, comments?: any[]) {
     this.image = new Image();
     this.image.src = source;
-    this.setType();
-    this.likesCount = likesCount || 0;
-    this.dislikesCount = dislikesCount || 0;
-    this.comments = comments && comments.map(comment => {
-        return new CommentModel(
-          comment.content,
-          comment.author,
-          comment.date
-        );
-      }) || [];
+    this.image.onload = (ev: any) => {
+      this.setType();
+      this.likesCount = likesCount || 0;
+      this.dislikesCount = dislikesCount || 0;
+      this.comments = comments && comments.map(comment => {
+          return new CommentModel(
+            comment.content,
+            comment.author,
+            comment.date
+          );
+        }) || [];
+    }
   }
 
   public like() {

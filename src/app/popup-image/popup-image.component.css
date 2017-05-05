@@ -139,6 +139,7 @@
 .comments-list {
   height: 410px;
   padding-right: 18px;
+  overflow-y: auto;
 }
 
 .comments-list::-webkit-scrollbar {
@@ -166,6 +167,8 @@
   -ms-flex-pack: justify;
   justify-content: space-between;
   margin-bottom: 5px;
+  word-break: break-word;
+  align-items: center;
 }
 
 .comment-info-content {
@@ -173,6 +176,10 @@
   line-height: 11px;
   color: #95A7B3;
   margin: 0;
+}
+
+.comment-info-content.author {
+  width: 150px;
 }
 
 .comment-content {

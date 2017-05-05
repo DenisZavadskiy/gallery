@@ -3,8 +3,8 @@
 
   <section class="packery-grid-wrapper">
     <section class="packery-grid" #packerygrid>
-      <div class="packery-grid-item" *ngFor="let image of images" ngClass="{{image.getType()}}">
-        <img [src]="image.getSource()" (click)="imageClick(image)">
+      <div class="packery-grid-item" *ngFor="let image of images" ngClass="{{image?.getType()}}">
+        <img [src]="image?.getSource()" (click)="imageClick(image)">
       </div>
       <div class="packery-grid-item" id="addImageBtn">
         <input type="file" id="addFileInput" multiple="" accept="image/jpeg,image/png" (change)="onChange($event)">

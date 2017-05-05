@@ -1,4 +1,4 @@
-<section id="popupOverlay" *ngIf="popupOpened">
+<section id="popupOverlay" [@popup] *ngIf="popupOpened">
   <section id="imagePopup">
     <div class="popup-close-btn" (click)="closePopup()"></div>
 
@@ -25,7 +25,7 @@
       <div class="comments-list">
         <div class="comment" *ngFor="let comment of image.getImageComments()">
           <div class="comment-info-row">
-            <p class="comment-info-content">By {{comment.getAuthor()}}</p>
+            <p class="comment-info-content author">By {{comment.getAuthor()}}</p>
             <p class="comment-info-content">{{comment.getDate() | fromNow}}</p>
           </div>
           <div class="comment-content">{{comment.getContent()}}</div>

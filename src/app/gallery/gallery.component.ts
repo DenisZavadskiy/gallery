@@ -6,14 +6,12 @@ declare let Packery: any;
 @Component({
   selector: 'app-gallery',
   templateUrl: './gallery.component.html',
-  styleUrls: ['./gallery.component.css'],
-  inputs: ['images']
+  styleUrls: ['./gallery.component.css']
 })
-export class GalleryComponent implements AfterViewChecked{
+export class GalleryComponent implements AfterViewChecked, OnInit {
   @ViewChild('packerygrid') grid;
   images: ImageModel[];
   packery: any;
-
 
   constructor(public imageService: ImageService) {
   }
@@ -34,6 +32,7 @@ export class GalleryComponent implements AfterViewChecked{
       image.onload = (ev: any) => {
         let galleryImage: ImageModel = new ImageModel(image.src);
         this.images.push(galleryImage);
+        console.log(this.images);
       };
     }
   }
@@ -44,5 +43,12 @@ export class GalleryComponent implements AfterViewChecked{
       gutter: 10,
       horizontal: true
     });
+  }
+
+  ngOnInit() {
+    this.imageService.loadAllImages()
+      .subscribe(images => {
+        this.images = images;
+      })
   }
 }
