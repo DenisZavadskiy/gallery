@@ -52,18 +52,15 @@
   cursor: pointer;
 }
 
+.packery-grid-item img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
 .wide-screen-item {
   width: 482px;
   height: 200px;
-}
-
-.wide-screen-item img {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  width: inherit;
-  height: auto;
 }
 
 .square-item {
@@ -71,19 +68,9 @@
   height: 200px;
 }
 
-.square-item img {
-  width: auto;
-  height: inherit;
-}
-
 .portrait-item {
   width: 236px;
   height: 410px;
-}
-
-.portrait-item img {
-  height: inherit;
-  width: auto;
 }
 
 #addImageBtn {

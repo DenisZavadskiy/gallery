@@ -19,6 +19,7 @@
   width: 23px;
   height: 23px;
   position: absolute;
+  cursor: pointer;
 }
 
 .popup-close-btn::before, .popup-close-btn::after {
@@ -60,10 +61,13 @@
 
 #imageContainer {
   height: 515px;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
   overflow: hidden;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 #evaluateContainer {
@@ -195,7 +199,7 @@
   width: 290px;
 }
 
-.add-nickname{
+.add-nickname {
   -webkit-transition: border .5s;
   transition: border .5s;
   width: 100%;
@@ -244,6 +248,7 @@
   cursor: pointer;
   font-size: 0;
 }
+
 .add-comment-btn::after {
   content: "";
   display: block;

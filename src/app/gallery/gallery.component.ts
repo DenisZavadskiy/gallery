@@ -1,12 +1,28 @@
 import {AfterViewChecked, Component, OnInit, ViewChild} from '@angular/core';
 import {ImageModel} from "../models/image.model";
 import {ImageService} from "../services/image.service";
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition
+} from '@angular/animations';
+
 declare let Packery: any;
 
 @Component({
   selector: 'app-gallery',
   templateUrl: './gallery.component.html',
-  styleUrls: ['./gallery.component.css']
+  styleUrls: ['./gallery.component.css'],
+  animations: [
+    trigger('gallery', [
+      transition('void => *', [
+        style({opacity: '0'}),
+        animate(1000, style({opacity: '1'}))
+      ]),
+    ])
+  ]
 })
 export class GalleryComponent implements AfterViewChecked, OnInit {
   @ViewChild('packerygrid') grid;
