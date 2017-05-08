@@ -1,27 +1,30 @@
 import {CommentModel} from "./comment.model";
 
 export class ImageModel {
-  private image: HTMLImageElement;
+  private imageSrc: string;
   private likesCount: number;
   private dislikesCount: number;
   private comments: CommentModel[];
   private type: string;
 
   constructor(source: string, likesCount?: number, dislikesCount?: number, comments?: any[]) {
-    this.image = new Image();
-    this.image.src = source;
-    this.image.onload = (ev: any) => {
-      this.setType();
-      this.likesCount = likesCount || 0;
-      this.dislikesCount = dislikesCount || 0;
-      this.comments = comments && comments.map(comment => {
-          return new CommentModel(
-            comment.content,
-            comment.author,
-            comment.date
-          );
-        }) || [];
-    }
+    this.imageSrc = source;
+
+    let image = new Image();
+    image.src = source;
+    image.onload = (ev: any) => {
+      this.setType(image);
+    };
+
+    this.likesCount = likesCount || 0;
+    this.dislikesCount = dislikesCount || 0;
+    this.comments = comments && comments.map(comment => {
+        return new CommentModel(
+          comment.content,
+          comment.author,
+          comment.date
+        );
+      }) || [];
   }
 
   public like() {
@@ -37,7 +40,7 @@ export class ImageModel {
   }
 
   public getSource() {
-    return this.image.src;
+    return this.imageSrc;
   }
 
   public getLikesCount() {
@@ -60,8 +63,8 @@ export class ImageModel {
     return this.comments;
   }
 
-  private setType() {
-    let ratio = this.image.width / this.image.height;
+  private setType(image: HTMLImageElement) {
+    let ratio = image.width / image.height;
 
     if (ratio < 0.75) {
       this.type = "portrait-item";

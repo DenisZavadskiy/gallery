@@ -10,7 +10,6 @@ import 'rxjs/add/operator/do';
 
 @Injectable()
 export class ImageService {
-  public images: ImageModel[];
   private currentImage: Subject<ImageModel>;
 
   constructor(private http: Http) {
@@ -18,24 +17,25 @@ export class ImageService {
   }
 
   public loadAllImages() {
-    if (this.images) {
-      return Observable.of(this.images);
+    let images = JSON.parse(localStorage.getItem('images'));
+
+    if (images) {
+      return Observable.of(images.map(this.objectToImageModel));
     } else {
-      return this.http.get('assets/data/imagesData.json')
+      return this.http.get('./assets/data/imagesData.json')
         .map(response => {
-          return response.json().images.map(image => {
-            return new ImageModel(
-              image.src,
-              image.likesCount,
-              image.dislikesCount,
-              image.comments
-            );
-          });
-        })
-        .do(data => {
-          this.images = data;
-        })
+          return response.json().images.map(this.objectToImageModel);
+        });
     }
+  }
+
+  private objectToImageModel(image) {
+    return new ImageModel(
+      image.imageSrc,
+      image.likesCount,
+      image.dislikesCount,
+      image.comments
+    );
   }
 
   public setCurrentImage(image: ImageModel) {

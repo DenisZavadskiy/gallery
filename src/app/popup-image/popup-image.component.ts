@@ -5,7 +5,6 @@ import {ImageModel} from "../models/image.model";
 import {CommentModel} from "../models/comment.model";
 import {
   trigger,
-  state,
   style,
   animate,
   transition
@@ -37,6 +36,7 @@ export class PopupImageComponent implements OnInit {
       'nickname': ['', Validators.required],
       'commentContent': ['', Validators.required]
     });
+    this.popupOpened = false;
   }
 
   addComment(value) {
@@ -51,12 +51,10 @@ export class PopupImageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.popupOpened = false;
     this.imageService.getCurrentImage()
       .subscribe(image => {
         this.image = image;
         this.popupOpened = true;
       })
   }
-
 }

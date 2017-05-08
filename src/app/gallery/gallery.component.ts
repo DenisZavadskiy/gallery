@@ -3,7 +3,6 @@ import {ImageModel} from "../models/image.model";
 import {ImageService} from "../services/image.service";
 import {
   trigger,
-  state,
   style,
   animate,
   transition
@@ -38,18 +37,13 @@ export class GalleryComponent implements AfterViewChecked, OnInit {
 
   public onChange(event) {
     let reader = new FileReader();
-
     reader.readAsDataURL(event.srcElement.files[0]);
 
     reader.onload = (ev: any) => {
-      let image = new Image();
-      image.src = ev.target.result;
+      let galleryImage: ImageModel = new ImageModel(ev.target.result);
+      this.images.push(galleryImage);
 
-      image.onload = (ev: any) => {
-        let galleryImage: ImageModel = new ImageModel(image.src);
-        this.images.push(galleryImage);
-        console.log(this.images);
-      };
+      localStorage.setItem('images', JSON.stringify(this.images));
     }
   }
 
