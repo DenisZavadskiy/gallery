@@ -1,10 +1,21 @@
 <section id="gallery-wrapper" [@gallery]>
   <h1 class="page-title">Welcome to viseven <span class="page-title--color">imagestock</span></h1>
 
-  <section class="packery-grid-wrapper">
+  <section class="packery-grid-wrapper" #packerygridwrapper>
     <section class="packery-grid" #packerygrid>
       <div class="packery-grid-item" *ngFor="let image of images" ngClass="{{image?.getType()}}">
         <img [src]="image?.getSource()" (click)="imageClick(image)">
+        <div class="image-info">
+          <div class="comment-icon info-icon">
+            <p class="reviews-count">{{image?.getCommentsCount()}}</p>
+          </div>
+          <div class="dislike-icon info-icon">
+            <p class="reviews-count">{{image?.getDislikesCount()}}</p>
+          </div>
+          <div class="like-icon info-icon">
+            <p class="reviews-count">{{image?.getLikesCount()}}</p>
+          </div>
+        </div>
       </div>
       <div class="packery-grid-item" id="addImageBtn">
         <input type="file" id="addFileInput" multiple="" accept="image/jpeg,image/png" (change)="onChange($event)">

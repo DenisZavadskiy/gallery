@@ -1,4 +1,4 @@
-import {AfterViewChecked, Component, OnInit, ViewChild} from '@angular/core';
+import {AfterContentChecked, AfterViewChecked, Component, DoCheck, OnChanges, OnInit, ViewChild} from '@angular/core';
 import {ImageModel} from "../models/image.model";
 import {ImageService} from "../services/image.service";
 import {
@@ -25,6 +25,7 @@ declare let Packery: any;
 })
 export class GalleryComponent implements AfterViewChecked, OnInit {
   @ViewChild('packerygrid') grid;
+  @ViewChild('packerygridwrapper') gridWrapper;
   images: ImageModel[];
   packery: any;
 
@@ -53,6 +54,7 @@ export class GalleryComponent implements AfterViewChecked, OnInit {
       gutter: 10,
       horizontal: true
     });
+    this.gridWrapper.nativeElement.scrollLeft = this.gridWrapper.nativeElement.scrollWidth;
   }
 
   ngOnInit() {

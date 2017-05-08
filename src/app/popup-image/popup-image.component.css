@@ -99,13 +99,11 @@
 }
 
 .like-btn {
-  -webkit-transform: rotate(180deg);
-  transform: rotate(180deg);
-  background: url("../../assets/projectImages/icons.png") no-repeat -36px center;
+  background: url("../../assets/projectImages/icons.png") no-repeat -78px center;
 }
 
 .dislike-btn {
-  background: url("../../assets/projectImages/icons.png") no-repeat -36px center;
+  background: url("../../assets/projectImages/icons.png") no-repeat -26px center;
 }
 
 .reviews-count {
@@ -257,5 +255,5 @@
   left: 12px;
   width: 26px;
   height: 27px;
-  background: url("../../assets/projectImages/icons.png") no-repeat -108px 0;
+  background: url("../../assets/projectImages/icons.png") no-repeat -130px center;
 }
