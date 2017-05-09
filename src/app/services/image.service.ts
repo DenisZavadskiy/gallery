@@ -11,6 +11,7 @@ import 'rxjs/add/operator/do';
 @Injectable()
 export class ImageService {
   private currentImage: Subject<ImageModel>;
+  private images: ImageModel[] = [];
 
   constructor(private http: Http) {
     this.currentImage = new Subject();
@@ -20,11 +21,20 @@ export class ImageService {
     let images = JSON.parse(localStorage.getItem('images'));
 
     if (images) {
-      return Observable.of(images.map(this.objectToImageModel));
+      return Observable.of(images)
+        .map(response => {
+          return response.map(this.objectToImageModel);
+        })
+        .do(images => {
+          this.images = images;
+        });
     } else {
       return this.http.get('./assets/data/imagesData.json')
         .map(response => {
           return response.json().images.map(this.objectToImageModel);
+        })
+        .do(images => {
+          this.images = images;
         });
     }
   }
@@ -36,6 +46,10 @@ export class ImageService {
       image.dislikesCount,
       image.comments
     );
+  }
+
+  public saveImages() {
+    localStorage.setItem('images', JSON.stringify(this.images));
   }
 
   public setCurrentImage(image: ImageModel) {

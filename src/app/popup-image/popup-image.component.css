@@ -87,6 +87,24 @@
   display: flex;
 }
 
+.evaluate-btn-wrapper.dislike-btn-wrapper.active {
+  top: 0;
+  background-color: #D02828;
+}
+
+.evaluate-btn-wrapper.dislike-btn-wrapper.active  .dislike-btn {
+  background: url("../../assets/projectImages/icons.png") no-repeat -52px center;
+}
+
+.evaluate-btn-wrapper.like-btn-wrapper.active .like-btn {
+  background: url("../../assets/projectImages/icons.png") no-repeat -104px center;
+}
+
+.evaluate-btn-wrapper.like-btn-wrapper.active {
+  top: 0;
+  background-color: #28D0CE;
+}
+
 .evaluate-btn-wrapper.first {
   margin-left: auto;
 }

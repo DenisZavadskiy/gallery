@@ -9,13 +9,6 @@ export class ImageModel {
 
   constructor(source: string, likesCount?: number, dislikesCount?: number, comments?: any[]) {
     this.imageSrc = source;
-
-    let image = new Image();
-    image.src = source;
-    image.onload = (ev: any) => {
-      this.setType(image);
-    };
-
     this.likesCount = likesCount || 0;
     this.dislikesCount = dislikesCount || 0;
     this.comments = comments && comments.map(comment => {
@@ -25,14 +18,23 @@ export class ImageModel {
           comment.date
         );
       }) || [];
+    this.setType();
   }
 
-  public like() {
+  public increaseLikesCount() {
     this.likesCount++;
   }
 
-  public dislike() {
+  public reduceLikesCount() {
+    this.likesCount--;
+  }
+
+  public increaseDislikesCount() {
     this.dislikesCount++;
+  }
+
+  public reduceDislikesCount() {
+    this.dislikesCount--;
   }
 
   public addComment(comment: CommentModel) {
@@ -63,13 +65,18 @@ export class ImageModel {
     return this.comments;
   }
 
-  private setType(image: HTMLImageElement) {
-    let ratio = image.width / image.height;
+  private setType() {
+    let image = new Image();
+    image.src = this.imageSrc;
 
-    if (ratio < 0.75) {
-      this.type = "portrait-item";
-    } else {
-      this.type = Math.round(ratio) === 1 ? "square-item" : "wide-screen-item";
-    }
+    image.onload = (ev: any) => {
+      let ratio = image.width / image.height;
+
+      if (ratio < 0.75) {
+        this.type = "portrait-item";
+      } else {
+        this.type = Math.round(ratio) === 1 ? "square-item" : "wide-screen-item";
+      }
+    };
   }
 }

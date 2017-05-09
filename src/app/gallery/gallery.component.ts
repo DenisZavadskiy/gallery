@@ -1,4 +1,4 @@
-import {AfterContentChecked, AfterViewChecked, Component, DoCheck, OnChanges, OnInit, ViewChild} from '@angular/core';
+import {AfterViewChecked, Component, OnInit, ViewChild} from '@angular/core';
 import {ImageModel} from "../models/image.model";
 import {ImageService} from "../services/image.service";
 import {
@@ -36,15 +36,17 @@ export class GalleryComponent implements AfterViewChecked, OnInit {
     this.imageService.setCurrentImage(image);
   }
 
-  public onChange(event) {
+  public onImageAdd(event) {
     let reader = new FileReader();
-    reader.readAsDataURL(event.srcElement.files[0]);
+
+    if (event.srcElement.files.length > 0) {
+      reader.readAsDataURL(event.srcElement.files[0]);
+    }
 
     reader.onload = (ev: any) => {
       let galleryImage: ImageModel = new ImageModel(ev.target.result);
       this.images.push(galleryImage);
-
-      localStorage.setItem('images', JSON.stringify(this.images));
+      this.imageService.saveImages();
     }
   }
 
