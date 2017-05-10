@@ -1,7 +1,7 @@
-<section id="gallery-wrapper" [@gallery]>
+<section id="gallery-wrapper">
   <h1 class="page-title">Welcome to viseven <span class="page-title--color">imagestock</span></h1>
 
-  <section class="packery-grid-wrapper" #packerygridwrapper>
+  <section class="packery-grid-wrapper" #packerygridwrapper [@gallery]="imagesLoaded.toString()">
     <section class="packery-grid" #packerygrid>
       <div class="packery-grid-item" *ngFor="let image of images" ngClass="{{image?.getType()}}">
         <img [src]="image?.getSource()" (click)="imageClick(image)">

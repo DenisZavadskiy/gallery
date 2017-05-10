@@ -3,12 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ImageService} from "../services/image.service";
 import {ImageModel} from "../models/image.model";
 import {CommentModel} from "../models/comment.model";
-import {
-  trigger,
-  style,
-  animate,
-  transition
-} from '@angular/animations';
+import {trigger, style, animate, transition} from '@angular/animations';
 
 @Component({
   selector: 'app-popup-image',

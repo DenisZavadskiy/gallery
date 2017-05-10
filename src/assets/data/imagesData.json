@@ -124,57 +124,6 @@
           "content": "great!"
         }
       ]
-    },
-    {
-      "imageSrc": "./assets/images/9.jpg",
-      "likesCount": 5,
-      "dislikesCount": 1,
-      "comments": [
-        {
-          "author": "admin",
-          "date": 1493835030530,
-          "content": "awesome photo"
-        },
-        {
-          "author": "denis",
-          "date": 1493835030530,
-          "content": "great!"
-        }
-      ]
-    },
-    {
-      "imageSrc": "./assets/images/10.jpg",
-      "likesCount": 5,
-      "dislikesCount": 1,
-      "comments": [
-        {
-          "author": "admin",
-          "date": 1493835030530,
-          "content": "awesome photo"
-        },
-        {
-          "author": "denis",
-          "date": 1493835030530,
-          "content": "great!"
-        }
-      ]
-    },
-    {
-      "imageSrc": "./assets/images/11.jpg",
-      "likesCount": 5,
-      "dislikesCount": 1,
-      "comments": [
-        {
-          "author": "admin",
-          "date": 1493835030530,
-          "content": "awesome photo"
-        },
-        {
-          "author": "denis",
-          "date": 1493835030530,
-          "content": "great!"
-        }
-      ]
     }
   ]
 }

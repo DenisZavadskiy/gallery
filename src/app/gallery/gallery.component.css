@@ -27,6 +27,8 @@
   overflow-x: auto;
   overflow-y: hidden;
   padding-bottom: 47px;
+  opacity: 0;
+  transition: opacity 500ms 500ms;
 }
 
 .packery-grid-wrapper::-webkit-scrollbar {

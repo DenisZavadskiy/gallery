@@ -1,42 +1,48 @@
 import {Injectable} from '@angular/core';
 import {ImageModel} from "../models/image.model";
 import {Http} from "@angular/http";
-import 'rxjs/add/operator/map';
 import {Subject} from "rxjs/Subject";
-import {Observable} from "rxjs/Observable";
 import 'rxjs/add/observable/of';
-import 'rxjs/add/observable/from';
+import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
+import {BehaviorSubject} from "rxjs/BehaviorSubject";
 
 @Injectable()
 export class ImageService {
-  private currentImage: Subject<ImageModel>;
-  private images: ImageModel[] = [];
+  private currentImage: Subject<ImageModel> = new Subject();
+  private images: BehaviorSubject<ImageModel[]> = new BehaviorSubject<ImageModel[]>([]);
 
   constructor(private http: Http) {
-    this.currentImage = new Subject();
+    this.loadAllImages();
   }
 
   public loadAllImages() {
     let images = JSON.parse(localStorage.getItem('images'));
 
-    if (images) {
-      return Observable.of(images)
-        .map(response => {
-          return response.map(this.objectToImageModel);
-        })
-        .do(images => {
-          this.images = images;
-        });
+    if (images && images.length > 0) {
+      let mapedImages = images.map(this.objectToImageModel);
+      this.images.next(mapedImages);
     } else {
-      return this.http.get('./assets/data/imagesData.json')
+      this.http.get('./assets/data/imagesData.json')
         .map(response => {
           return response.json().images.map(this.objectToImageModel);
         })
-        .do(images => {
-          this.images = images;
-        });
+        .subscribe(images => {
+          this.images.next(images);
+        })
     }
+  }
+
+  public getImages() {
+    return this.images;
+  }
+
+  public addImage(image: ImageModel) {
+    let images = this.images.getValue();
+    images.push(image);
+
+    this.images.next(images);
+    this.saveImages();
   }
 
   private objectToImageModel(image) {
@@ -49,7 +55,8 @@ export class ImageService {
   }
 
   public saveImages() {
-    localStorage.setItem('images', JSON.stringify(this.images));
+    let images = this.images.getValue();
+    localStorage.setItem('images', JSON.stringify(images));
   }
 
   public setCurrentImage(image: ImageModel) {

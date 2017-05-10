@@ -1,12 +1,7 @@
 import {AfterViewChecked, Component, OnInit, ViewChild} from '@angular/core';
 import {ImageModel} from "../models/image.model";
 import {ImageService} from "../services/image.service";
-import {
-  trigger,
-  style,
-  animate,
-  transition
-} from '@angular/animations';
+import {trigger, style, animate, transition, state} from '@angular/animations';
 
 declare let Packery: any;
 
@@ -16,18 +11,19 @@ declare let Packery: any;
   styleUrls: ['./gallery.component.css'],
   animations: [
     trigger('gallery', [
-      transition('void => *', [
-        style({opacity: '0'}),
-        animate(1000, style({opacity: '1'}))
-      ]),
+      state('false', style({opacity: '0'})),
+      state('true', style({opacity: '1'})),
+      transition('false => true', animate('500ms'))
     ])
   ]
 })
+
 export class GalleryComponent implements AfterViewChecked, OnInit {
   @ViewChild('packerygrid') grid;
   @ViewChild('packerygridwrapper') gridWrapper;
   images: ImageModel[];
   packery: any;
+  public imagesLoaded: boolean = false;
 
   constructor(public imageService: ImageService) {
   }
@@ -45,8 +41,7 @@ export class GalleryComponent implements AfterViewChecked, OnInit {
 
     reader.onload = (ev: any) => {
       let galleryImage: ImageModel = new ImageModel(ev.target.result);
-      this.images.push(galleryImage);
-      this.imageService.saveImages();
+      this.imageService.addImage(galleryImage);
     }
   }
 
@@ -56,13 +51,17 @@ export class GalleryComponent implements AfterViewChecked, OnInit {
       gutter: 10,
       horizontal: true
     });
-    this.gridWrapper.nativeElement.scrollLeft = this.gridWrapper.nativeElement.scrollWidth;
   }
 
   ngOnInit() {
-    this.imageService.loadAllImages()
+    this.imageService.getImages()
       .subscribe(images => {
         this.images = images;
-      })
+        this.imagesLoaded = true;
+      });
+
+    this.gridWrapper.nativeElement.onmousewheel = (e) => {
+      this.gridWrapper.nativeElement.scrollLeft -= e.wheelDelta;
+    };
   }
 }
