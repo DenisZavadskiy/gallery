@@ -1,0 +1,49 @@
+<section id="popupOverlay" [@popup] *ngIf="popupOpened">
+  <section id="imagePopup">
+    <div class="popup-close-btn" (click)="closePopup()"></div>
+
+    <div id="imageBox">
+      <div id="imageContainer">
+        <img [src]="image.getSource()" alt="" class="image">
+      </div>
+      <div id="evaluateContainer">
+        <div class="evaluate-btn-wrapper first dislike-btn-wrapper" (click)="toggleDislike()"
+             [ngClass]="{'active': dislike}">
+          <div class="evaluate-btn dislike-btn">
+            <p class="reviews-count">{{image.getDislikesCount()}}</p>
+          </div>
+        </div>
+        <div class="evaluate-btn-wrapper like-btn-wrapper" (click)="toggleLike()" [ngClass]="{'active': like}">
+          <div class="evaluate-btn like-btn">
+            <p class="reviews-count">{{image.getLikesCount()}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="commentsBox">
+      <h1 class="comments-box-title">Comments: {{image.getCommentsCount()}}</h1>
+      <div class="comments-list">
+        <div class="comment" *ngFor="let comment of image.getImageComments()">
+          <div class="comment-info-row">
+            <p class="comment-info-content author">By {{comment.getAuthor()}}</p>
+            <p class="comment-info-content">{{comment.getDate() | fromNow}}</p>
+          </div>
+          <div class="comment-content">{{comment.getContent()}}</div>
+        </div>
+      </div>
+
+      <form id="addCommentForm" [formGroup]="commentForm" (submit)="addComment(commentForm.value)">
+        <input type="text" class="add-nickname" placeholder="Type your nickname here..."
+               [formControl]="commentForm.controls['nickname']">
+
+        <div class="add-comment-content-wrapper">
+          <textarea name="" id="" cols="30" rows="10" class="add-comment-content"
+                    placeholder="Write your comment here..."
+                    [formControl]="commentForm.controls['commentContent']"></textarea>
+          <button type="submit" class="add-comment-btn" [disabled]="!commentForm.valid"></button>
+        </div>
+      </form>
+    </div>
+  </section>
+</section>

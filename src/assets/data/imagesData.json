@@ -1,0 +1,129 @@
+{
+  "images": [
+    {
+      "imageSrc": "./assets/images/1.jpg",
+      "likesCount": 5,
+      "dislikesCount": 1,
+      "comments": [
+        {
+          "author": "admin",
+          "date": 1493835030530,
+          "content": "awesome photo"
+        },
+        {
+          "author": "denis",
+          "date": 1493835030530,
+          "content": "great!"
+        }
+      ]
+    },
+    {
+      "imageSrc": "./assets/images/2.jpg",
+      "likesCount": 5,
+      "dislikesCount": 0,
+      "comments": []
+    },
+    {
+      "imageSrc": "././assets/images/3.jpg",
+      "likesCount": 5,
+      "dislikesCount": 1,
+      "comments": [
+        {
+          "author": "admin",
+          "date": 1493835030530,
+          "content": "awesome photo"
+        },
+        {
+          "author": "denis",
+          "date": 1493835030530,
+          "content": "great!"
+        }
+      ]
+    },
+    {
+      "imageSrc": "./assets/images/4.jpg",
+      "likesCount": 5,
+      "dislikesCount": 1,
+      "comments": [
+        {
+          "author": "admin",
+          "date": 1493835030530,
+          "content": "awesome photo"
+        },
+        {
+          "author": "denis",
+          "date": 1493835030530,
+          "content": "great!"
+        }
+      ]
+    },
+    {
+      "imageSrc": "./assets/images/5.jpg",
+      "likesCount": 5,
+      "dislikesCount": 1,
+      "comments": [
+        {
+          "author": "admin",
+          "date": 1493835030530,
+          "content": "awesome photo"
+        },
+        {
+          "author": "denis",
+          "date": 1493835030530,
+          "content": "great!"
+        }
+      ]
+    },
+    {
+      "imageSrc": "./assets/images/6.jpg",
+      "likesCount": 5,
+      "dislikesCount": 1,
+      "comments": [
+        {
+          "author": "admin",
+          "date": 1493835030530,
+          "content": "awesome photo"
+        },
+        {
+          "author": "denis",
+          "date": 1493835030530,
+          "content": "great!"
+        }
+      ]
+    },
+    {
+      "imageSrc": "./assets/images/7.jpg",
+      "likesCount": 5,
+      "dislikesCount": 1,
+      "comments": [
+        {
+          "author": "admin",
+          "date": 1493835030530,
+          "content": "awesome photo"
+        },
+        {
+          "author": "denis",
+          "date": 1493835030530,
+          "content": "great!"
+        }
+      ]
+    },
+    {
+      "imageSrc": "./assets/images/8.jpg",
+      "likesCount": 5,
+      "dislikesCount": 1,
+      "comments": [
+        {
+          "author": "admin",
+          "date": 1493835030530,
+          "content": "awesome photo"
+        },
+        {
+          "author": "denis",
+          "date": 1493835030530,
+          "content": "great!"
+        }
+      ]
+    }
+  ]
+}
